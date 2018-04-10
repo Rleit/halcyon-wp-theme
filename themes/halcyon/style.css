@@ -75,13 +75,14 @@ input:focus {
 
 /* wrapper */
 .wrapper {
-	max-width:1280px;
-	width:95%;
-	margin:0 auto;
-	position:relative;
+
 }
 /* header */
 .header {
+
+
+	background-color: #131313;
+	color: #FFF;
 
 }
 /* logo */
@@ -305,3 +306,14 @@ a img.aligncenter {
 		page-break-after:avoid;
 	}
 }
+/*------------------------------------*\
+    Bootstrap overrides
+\*------------------------------------*/
+.full-width-row {
+	overflow-x: hidden;
+  }
+  
+  .full-width-row > div {
+	margin-left: -15px;
+	margin-right: -15px;
+  }
