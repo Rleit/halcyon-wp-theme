@@ -63,28 +63,23 @@ if (function_exists('add_theme_support'))
 \*------------------------------------*/
 
 // HTML5 Blank navigation
+
+
+// Register Custom Navigation Walker
+require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+
 function html5blank_nav()
 {
-	wp_nav_menu(
-	array(
-		'theme_location'  => 'header-menu',
-		'menu'            => '',
-		'container'       => 'div',
-		'container_class' => 'menu-{menu slug}-container',
-		'container_id'    => '',
-		'menu_class'      => 'menu nav-item',
-		'menu_id'         => '',
-		'echo'            => true,
-		'fallback_cb'     => 'wp_page_menu',
-		'before'          => '',
-		'after'           => '',
-		'link_before'     => '',
-		'link_after'      => '',
-		'items_wrap'      => '<ul class="nav flex-column">%3$s</ul>',
-		'depth'           => 0,
-		'walker'          => ''
-		)
-	);
+	wp_nav_menu( array(
+        'theme_location'	=> 'header-menu',
+        'depth'				=> 0, // 1 = with dropdowns, 0 = no dropdowns.
+        'container'			=> 'div',
+        'container_class'	=> 'collapse navbar-collapse',
+        'container_id'		=> 'bs-example-navbar-collapse-1',
+        'menu_class'		=> 'navbar-nav mr-auto',
+        'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback',
+        'walker'			=> new WP_Bootstrap_Navwalker()
+    ) );
 }
 
 // Load HTML5 Blank scripts (header.php)

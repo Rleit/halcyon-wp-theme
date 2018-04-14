@@ -5,7 +5,8 @@
 	<meta charset="<?php bloginfo('charset'); ?>">
 	<title>
 		<?php wp_title(''); ?>
-		<?php if(wp_title('', false)) { echo ' :'; } ?>
+		<?php if(wp_title('', false)) { echo ' :'; 
+    } ?>
 		<?php bloginfo('name'); ?>
 	</title>
 
@@ -32,11 +33,11 @@
 <body <?php body_class(); ?>>
 
 	<!-- wrapper -->
-	<div class="container-fluid" >
+	<div class="container-fluid">
 		<div class="row full-width-row">
 			<!-- header -->
-			<div class="col-md-3 col-lg-2">
-				<header class="header clear h-100" role="banner">
+			<div class="col-md-3 col-lg-2 sticky-top">
+				<header class="header clear h-100  snav" role="banner">
 
 					<!-- logo -->
 					<div class="logo">
@@ -51,22 +52,48 @@
 					<nav class="nav" role="navigation">
 
 
-						<div class="row w-100 ">
+						<div class="row w-100 marg0 ">
+
 							<div class="col-md-4 w-25">
 							</div>
+
 							<div class="col-md-4 w-50 text-center">
 								<?php html5blank_nav(); ?>
 							</div>
+
 							<div class="col-md-4 w-25">
 							</div>
 						</div>
+
+
+
+
+
 					</nav>
 					<!-- /nav -->
 
-					<?php get_footer(); ?>
+						</br>
+
+					<!-- footer -->
+					<div class="h-25 text-center ">
+
+						<!-- copyright -->
+						<p>
+							&copy;
+							<?php echo date('Y'); ?> Copyright
+							<?php bloginfo('name'); ?>.
+							</br>
+							<?php _e('Powered by', 'html5blank'); ?>
+							<a href="//wordpress.org" title="WordPress">WordPress</a>
+							<a href="//html5blank.com" title="HTML5 Blank">HTML5 Blank</a>.
+						</p>
+						<!-- /copyright -->
+
+					</div>
+					<!-- /footer -->
 
 				</header>
 
-				
+			</div>
 
-				<!-- /header -->
+			<!-- /header -->
