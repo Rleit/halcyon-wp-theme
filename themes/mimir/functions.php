@@ -1,7 +1,7 @@
 <?php
 /*
  *  Author: Todd Motto | @toddmotto
- *  URL: html5blank.com | @html5blank
+ *  URL: halcyon.com | @halcyon
  *  Custom functions, support, custom post types and more.
  */
 
@@ -32,6 +32,8 @@ if (function_exists('add_theme_support'))
     add_image_size('small', 120, '', true); // Small Thumbnail
     add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
+    add_theme_support('feature');
+    
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
     /*add_theme_support('custom-background', array(
 	'default-color' => 'FFF',
@@ -55,7 +57,7 @@ if (function_exists('add_theme_support'))
     add_theme_support('automatic-feed-links');
 
     // Localisation Support
-    load_theme_textdomain('html5blank', get_template_directory() . '/languages');
+    load_theme_textdomain('halcyon', get_template_directory() . '/languages');
 }
 
 /*------------------------------------*\
@@ -64,28 +66,35 @@ if (function_exists('add_theme_support'))
 
 // HTML5 Blank navigation
 
+function homebg(){
+
+    the_post_thumbnail('full', ['class' => 'img-fluid', 'title' => 'Feature image']);
+}
 
 // Register Custom Navigation Walker
 require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
 
-function html5blank_nav()
+function halcyon_nav()
 {
 	wp_nav_menu( array(
         'theme_location'	=> 'header-menu',
         'depth'				=> 0, // 1 = with dropdowns, 0 = no dropdowns.
-        'container'			=> 'div',
+        'container'			=> 'nav',
         'container_class'	=> 'collapse navbar-collapse',
         'container_id'		=> 'bs-example-navbar-collapse-1',
-        'menu_class'		=> 'navbar-nav mr-auto',
+        'menu_class'		=> 'navbar-nav mr-auto text-center',
         'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback',
         'walker'			=> new WP_Bootstrap_Navwalker()
     ) );
 }
 
 // Load HTML5 Blank scripts (header.php)
-function html5blank_header_scripts()
+function halcyon_header_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
+
+        wp_register_script('jquery3',  'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js', array(), '3.3.1'); // Jquery
+        wp_enqueue_script('jquery3'); // Enqueue it!
 
     	wp_register_script('conditionizr', get_template_directory_uri() . '/js/lib/conditionizr-4.3.0.min.js', array(), '4.3.0'); // Conditionizr
         wp_enqueue_script('conditionizr'); // Enqueue it!
@@ -93,49 +102,65 @@ function html5blank_header_scripts()
         wp_register_script('modernizr', get_template_directory_uri() . '/js/lib/modernizr-2.7.1.min.js', array(), '2.7.1'); // Modernizr
         wp_enqueue_script('modernizr'); // Enqueue it!
 
-        wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
-        wp_enqueue_script('html5blankscripts'); // Enqueue it!
+        wp_register_script('bstool',  'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js', array(), '1.13.0', 'True'); // <!-- Bootstrap tooltips -->
+        wp_enqueue_script('bstool'); // <!-- Bootstrap tooltips -->
+        
+        wp_register_script('bootstrap_js', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js', array(), '4.1.0', 'True'); // Bootstrap
+        wp_enqueue_script('bootstrap_js'); // <!-- Bootstrap core JavaScript -->
 
-        wp_register_script('bootstrap_js', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '4.1.0'); // Bootstrap
-        wp_enqueue_script('bootstrap_js'); // Enqueue it!
+        wp_register_script('mdb_js',  'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js', array(), '4.5.0', 'True'); // MDB
+        wp_enqueue_script('mdb_js'); // <!-- MDB core JavaScript -->
 
+        wp_register_script('oscripts', get_template_directory_uri() . '/js/scripts.js', array(), '0.0.1'); // Quickedits
+        wp_enqueue_script('oscripts'); // Enqueue it!
         
     }
 }
 
+
+
 // Load HTML5 Blank conditional scripts
-function html5blank_conditional_scripts()
+function halcyon_conditional_scripts()
 {
-    if (is_page('pagenamehere')) {
-        wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
-        wp_enqueue_script('scriptname'); // Enqueue it!
+    // if (is_page('pagenamehere')) {
+    //     wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
+    //     wp_enqueue_script('scriptname'); // Enqueue it!
 
         
-    }
+    // }
 }
 
 // Load HTML5 Blank styles
-function html5blank_styles()
+function halcyon_styles()
 {
     wp_register_style('normalize', get_template_directory_uri() . '/normalize.css', array(), '1.0', 'all');
     wp_enqueue_style('normalize'); // Enqueue it!
 
-    wp_register_style('boostrap_css', get_template_directory_uri() . '/css/bootstrap.css', array(), '4.1.0', 'all');
+    wp_register_style('fontawesome',  'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), '4.7', 'all');
+    wp_enqueue_style('fontawesome'); // Enqueue it!
+
+    wp_register_style('boostrap_css',  'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css', array(), '4.0.0', 'all');
     wp_enqueue_style('boostrap_css'); // Enqueue it!
 
-    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
-    wp_enqueue_style('html5blank'); // Enqueue it!
+    wp_register_style('mdb_css',  'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css', array(), '4.5', 'all');
+    wp_enqueue_style('mdb_css'); // Enqueue it!
+
+    wp_register_style('halcyon', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
+    wp_enqueue_style('halcyon'); // Enqueue it!
 
     
 }
+
+
+
 
 // Register HTML5 Blank Navigation
 function register_html5_menu()
 {
     register_nav_menus(array( // Using array to specify more menus if needed
-        'header-menu' => __('Header Menu', 'html5blank'), // Main Navigation
-        'sidebar-menu' => __('Sidebar Menu', 'html5blank'), // Sidebar Navigation
-        'extra-menu' => __('Extra Menu', 'html5blank') // Extra Navigation if needed (duplicate as many as you need!)
+        'header-menu' => __('Header Menu', 'halcyon'), // Main Navigation
+        'sidebar-menu' => __('Sidebar Menu', 'halcyon'), // Sidebar Navigation
+        'extra-menu' => __('Extra Menu', 'halcyon') // Extra Navigation if needed (duplicate as many as you need!)
     ));
 }
 
@@ -181,8 +206,8 @@ if (function_exists('register_sidebar'))
 {
     // Define Sidebar Widget Area 1
     register_sidebar(array(
-        'name' => __('Widget Area 1', 'html5blank'),
-        'description' => __('Description for this widget-area...', 'html5blank'),
+        'name' => __('Widget Area 1', 'halcyon'),
+        'description' => __('Description for this widget-area...', 'halcyon'),
         'id' => 'widget-area-1',
         'before_widget' => '<div id="%1$s" class="%2$s">',
         'after_widget' => '</div>',
@@ -192,8 +217,8 @@ if (function_exists('register_sidebar'))
 
     // Define Sidebar Widget Area 2
     register_sidebar(array(
-        'name' => __('Widget Area 2', 'html5blank'),
-        'description' => __('Description for this widget-area...', 'html5blank'),
+        'name' => __('Widget Area 2', 'halcyon'),
+        'description' => __('Description for this widget-area...', 'halcyon'),
         'id' => 'widget-area-2',
         'before_widget' => '<div id="%1$s" class="%2$s">',
         'after_widget' => '</div>',
@@ -258,7 +283,7 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
 function html5_blank_view_article($more)
 {
     global $post;
-    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'html5blank') . '</a>';
+    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'halcyon') . '</a>';
 }
 
 // Remove Admin bar
@@ -281,7 +306,7 @@ function remove_thumbnail_dimensions( $html )
 }
 
 // Custom Gravatar in Settings > Discussion
-function html5blankgravatar ($avatar_defaults)
+function halcyongravatar ($avatar_defaults)
 {
     $myavatar = get_template_directory_uri() . '/img/gravatar.jpg';
     $avatar_defaults[$myavatar] = "Custom Gravatar";
@@ -299,7 +324,7 @@ function enable_threaded_comments()
 }
 
 // Custom Comments Callback
-function html5blankcomments($comment, $args, $depth)
+function halcyoncomments($comment, $args, $depth)
 {
 	$GLOBALS['comment'] = $comment;
 	extract($args, EXTR_SKIP);
@@ -347,12 +372,12 @@ function html5blankcomments($comment, $args, $depth)
 \*------------------------------------*/
 
 // Add Actions
-add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_head
-add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditional Page Scripts
+add_action('init', 'halcyon_header_scripts'); // Add Custom Scripts to wp_head
+add_action('wp_print_scripts', 'halcyon_conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
-add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet
+add_action('wp_enqueue_scripts', 'halcyon_styles'); // Add Theme Stylesheet
 add_action('init', 'register_html5_menu'); // Add HTML5 Blank Menu
-add_action('init', 'create_post_type_html5'); // Add our HTML5 Blank Custom Post Type
+add_action('init', 'create_post_type_html5'); // Add our Gallery Post Type
 add_action('widgets_init', 'my_remove_recent_comments_style'); // Remove inline Recent Comment Styles from wp_head()
 add_action('init', 'html5wp_pagination'); // Add our HTML5 Pagination
 
@@ -371,7 +396,7 @@ remove_action('wp_head', 'rel_canonical');
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 
 // Add Filters
-add_filter('avatar_defaults', 'html5blankgravatar'); // Custom Gravatar in Settings > Discussion
+add_filter('avatar_defaults', 'halcyongravatar'); // Custom Gravatar in Settings > Discussion
 add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (Starkers build)
 add_filter('widget_text', 'do_shortcode'); // Allow shortcodes in Dynamic Sidebar
 add_filter('widget_text', 'shortcode_unautop'); // Remove <p> tags in Dynamic Sidebars (better!)
@@ -402,26 +427,26 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 	Custom Post Types
 \*------------------------------------*/
 
-// Create 1 Custom Post type for a Demo, called HTML5-Blank
+// Create 1 Custom Post type for a Demo, called halcyon-b
 function create_post_type_html5()
 {
-    register_taxonomy_for_object_type('category', 'html5-blank'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('post_tag', 'html5-blank');
-    register_post_type('html5-blank', // Register Custom Post Type
+    register_taxonomy_for_object_type('category', 'gallery'); // Register Taxonomies for Category
+    register_taxonomy_for_object_type('post_tag', 'mosaicpost');
+    register_post_type('gallery', // Register Custom Post Type
         array(
         'labels' => array(
-            'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
-            'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
-            'add_new' => __('Add New', 'html5blank'),
-            'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
-            'edit' => __('Edit', 'html5blank'),
-            'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
-            'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
-            'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
-            'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
-            'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
+            'name' => __('Gallery Post', 'halcyon'), // Rename these to suit
+            'singular_name' => __('Gallery Post', 'halcyon'),
+            'add_new' => __('Add New', 'halcyon'),
+            'add_new_item' => __('Add New Gallery Entry', 'halcyon'),
+            'edit' => __('Edit', 'halcyon'),
+            'edit_item' => __('Edit Gallery Post', 'halcyon'),
+            'new_item' => __('New Gallery Post', 'halcyon'),
+            'view' => __('View Gallery Post', 'halcyon'),
+            'view_item' => __('View Gallery Post', 'halcyon'),
+            'search_items' => __('Search Gallery Post', 'halcyon'),
+            'not_found' => __('No Gallery Posts found', 'halcyon'),
+            'not_found_in_trash' => __('No Gallery Posts found in Trash', 'halcyon')
         ),
         'public' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
