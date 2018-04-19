@@ -7,7 +7,7 @@
     }
 ?>
 
-<main role="main" class="hbg" style="background-image: url('<?php echo $large_image_url[0]; ?>');">
+<main role="main" class="hbg pattern-2" style="background-image: url('<?php echo $large_image_url[0]; ?>');">
 
 	<section>
 
