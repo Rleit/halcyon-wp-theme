@@ -16,7 +16,7 @@
 	<div class="col-lg-10 mx-auto"> -->
 		<!-- article -->
 		
-		<div class="d-flex align-content-stretch flex-wrap" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<div class=" mx-auto w-50 text-center mt-4 " id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 			<?php the_content(); ?>
 
@@ -46,7 +46,7 @@
 	<!-- /section -->
 
 	<!-- footer -->
-	<div class="text-center fixed-bottom">
+	<div class="mx-auto w-50 text-center fixed-bottom">
 
 		<!-- copyright -->
 		<p>
