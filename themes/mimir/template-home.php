@@ -2,66 +2,66 @@
 
 
 <?php 
-    if ( has_post_thumbnail() ) {
-        $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-    }
+if (has_post_thumbnail() ) {
+    $large_image_url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
+}
 ?>
 
 <main role="main" class="hbg pattern-2" style="background-image: url('<?php echo $large_image_url[0]; ?>');">
 
-	<section>
+    <section>
 
-		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
-		<!-- <div class="row">
-	<div class="col-lg-10 mx-auto"> -->
-		<!-- article -->
-		
-		<div class=" mx-auto w-50 text-center mt-4 " id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+        <!-- <div class="row">
+    <div class="col-lg-10 mx-auto"> -->
+        <!-- article -->
+        
+        <div class=" mx-auto w-50 text-center mt-4 " id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-			<?php the_content(); ?>
+    <?php the_content(); ?>
 
 
-		</div>
-		<!-- /article -->
+        </div>
+        <!-- /article -->
 
-		<?php endwhile; ?>
+    <?php endwhile; ?>
 
-		<?php else: ?>
+    <?php else: ?>
 
-		<!-- article -->
-		<article>
+        <!-- article -->
+        <article>
 
-			<h2>
-				<?php _e( 'Something went wrong...Huh...', 'halcyon' ); ?>
-			</h2>
+            <h2>
+                <?php _e('Something went wrong...Huh...', 'halcyon'); ?>
+            </h2>
 
-		</article>
-		<!-- /article -->
+        </article>
+        <!-- /article -->
 
-		<?php endif; ?>
+    <?php endif; ?>
 
-		<!-- </div>
-				</div> -->
-	</section>
-	<!-- /section -->
+        <!-- </div>
+                </div> -->
+    </section>
+    <!-- /section -->
 
-	<!-- footer -->
-	<div class="mx-auto w-50 text-center fixed-bottom">
+    <!-- footer -->
+    <div class="mx-auto w-50 text-center fixed-bottom">
 
-		<!-- copyright -->
-		<p>
-			&copy;
-			<?php echo date('Y'); ?> Copyright
-			<?php bloginfo('name'); ?>.
-			</br>
-			<?php _e('Powered by', 'halcyon'); ?>
-			<a href="//wordpress.org" title="WordPress">WordPress</a>
-			<!-- <a href="//html5blank.com" title="HTML5 Blank">HTML5 Blank</a>. -->
-		</p>
-		<!-- /copyright -->
+        <!-- copyright -->
+        <p>
+            &copy;
+    <?php echo date('Y'); ?> Copyright
+    <?php bloginfo('name'); ?>.
+            </br>
+    <?php _e('Powered by', 'halcyon'); ?>
+            <a href="//wordpress.org" title="WordPress">WordPress</a>
+            <!-- <a href="//html5blank.com" title="HTML5 Blank">HTML5 Blank</a>. -->
+        </p>
+        <!-- /copyright -->
 
-	</div>
-	<!-- /footer -->
+    </div>
+    <!-- /footer -->
 
 </main>
 

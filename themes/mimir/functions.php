@@ -113,7 +113,9 @@ function halcyon_header_scripts()
 
         wp_register_script('oscripts', get_template_directory_uri() . '/js/scripts.js', array(), '0.0.1'); // Quickedits
         wp_enqueue_script('oscripts'); // Enqueue it!
-        
+
+        wp_register_script('wow',  'https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js', array(), '1.1.2'); // wow such doge
+        wp_enqueue_script('wow'); // Enqueue it!
     }
 }
 
@@ -481,4 +483,77 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
     return '<h2>' . $content . '</h2>';
 }
 
+?>
+
+    <!--  -->
+	<!-- Find first image or Feature image -->
+    <!--  -->
+
+
+<?php
+ 
+ /*Find the image id from a URL*/
+ 
+function url_get_image_id($image_url) {
+    global $wpdb;
+    $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
+    return $attachment[0];
+}
+ 
+/* determine whether post has a featured image, if not, find the first image inside the post content, $size passes the thumbnail size, $url determines whether to return a URL or a full image tag*/
+ 
+function checkImageType($size, $type) {
+ 
+    global $post;
+    $content = $post->post_content;                
+    $first_img = '';
+    ob_start();
+    ob_end_clean();
+    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $content, $matches);
+    $first_img = $matches[1][0];
+ 
+    /*If there's a featured image, show it*/
+ 
+    if (get_the_post_thumbnail($post_id) != '' ) {
+        if($type=='url') {
+            the_post_thumbnail_url($size);
+        } else {
+            the_post_thumbnail($size);
+        }
+    } else {
+ 
+        /*No featured image, so we get the first image inside the post content*/
+ 
+        if ($first_img) {
+ 
+            //let's get the correct image dimensions
+ 
+            $image_id = url_get_image_id($first_img);
+            $image_thumb = wp_get_attachment_image_src($image_id, $size);
+ 
+            // if we've found an image ID, correctly display it
+ 
+            if($image_thumb) {
+                if($type=='url') {
+                    echo $image_thumb[0];
+                } else {
+ 
+                    echo '<img src="'.$image_thumb[0].'" alt="'.get_the_title().'"/>';
+                }
+            } else {
+ 
+                //if no image (i.e. from an external source), echo the original URL
+ 
+                if($type=='url') {
+                    echo $first_img;
+                } else {
+ 
+                    echo '<img src="'.$first_img.'" alt="'.get_the_title().'"/>';
+                }
+ 
+            }
+        }
+    }
+}
+ 
 ?>

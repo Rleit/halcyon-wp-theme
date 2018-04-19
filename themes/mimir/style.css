@@ -610,3 +610,20 @@ padding-right: -15px !important;
 	top: 21px;
 	left: 8px;
 }
+
+
+/* Required for full background image */
+
+.jarallax {
+  height: 100%;
+}
+
+@media (max-width: 740px) {
+  .jarallax {
+    height: 100vh;
+  }
+}
+
+h5 {
+  letter-spacing: 3px;
+}
