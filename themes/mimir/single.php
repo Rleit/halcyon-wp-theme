@@ -1,9 +1,4 @@
 <?php get_header(); ?>
-
-
-
-
-
 <main role="main">
 	<!-- section -->
 	<section>
@@ -15,6 +10,127 @@ if (has_post_thumbnail() ) {
     $large_image_url = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
 }
 ?>
+
+		<!--Section: Post-->
+		<section class="mt-4" style="
+    overflow-x:  hidden;" >
+
+			<!--Grid row-->
+			<div class="row">
+
+				<!--Featured Image-->
+				<div class="card mb-4 mx-auto wow fadeIn">
+
+
+
+					<img src="<?php checkImageType('full', 'url');  ?>" class="img-fluid img-responsive" alt="Responsive image">
+
+				</div>
+
+				<!--/.Featured Image-->
+
+				<!--Grid column-->
+				<div class="col-md-8 mb-4 mx-auto">
+
+
+					
+
+					<!--Card-->
+					<div class="card mb-4 wow fadeIn">
+
+
+
+						<!--Card-->
+						<div class="card mb-4 wow fadeIn">
+
+							<!--Card content-->
+							<div class="card-body">
+
+								<p class="h1 my-4 text-center">
+									<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+										<?php the_title(); ?>
+									</a>
+								</p>
+
+
+								<!-- 			<blockquote class="blockquote">
+					<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+					<footer class="blockquote-footer">Someone famous in
+						<cite title="Source Title">Source Title</cite>
+					</footer>
+				</blockquote> -->
+
+								<p class="h5 my-4 text-center">
+									<span class="date">
+										<?php the_time('F j, Y'); ?>
+										<?php the_time('g:i a'); ?>
+									</span>
+									<span class="author">
+										<?php _e( 'Published by', 'halcyon' ); ?>
+										<?php the_author_posts_link(); ?>
+									</span>
+
+								</p>
+
+
+								<div class="p-content mx-auto">
+									<?php the_content(); // Dynamic Content ?>
+								</div>
+
+
+							</div>
+
+						</div>
+						<!--/.Card-->
+
+						<!--Card-->
+						<div class="card mb-4 wow fadeIn">
+
+							<div class="card-header font-weight-bold">
+								<span>About author</span>
+								<span class="pull-right">
+									<a href="">
+										<i class="fa fa-facebook mr-2"></i>
+									</a>
+									<a href="">
+										<i class="fa fa-twitter mr-2"></i>
+									</a>
+									<a href="">
+										<i class="fa fa-instagram mr-2"></i>
+									</a>
+									<a href="">
+										<i class="fa fa-linkedin mr-2"></i>
+									</a>
+								</span>
+							</div>
+
+							<!--Card content-->
+							<div class="card-body">
+
+								<?php  comments_template();  ?>
+
+							</div>
+
+						</div>
+						<!--/.Card-->
+
+
+
+					</div>
+					<!--Grid column-->
+
+
+
+				</div>
+				<!--Grid row-->
+
+		</section>
+		<!--Section: Post-->
+
+
+
+
+
 
 		<!-- article -->
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -77,7 +193,7 @@ if (has_post_thumbnail() ) {
 
 					<?php /* edit_post_link(); */ // Always handy to have Edit Post Links available ?>
 
-					<?php /*  comments_template(); */ ?>
+
 
 
 					<!-- Content -->
@@ -119,9 +235,7 @@ if (has_post_thumbnail() ) {
 </main>
 
 <script>
-
-new WOW().init();
-
+	new WOW().init();
 </script>
 
 <?php /* get_sidebar(); */ ?>

@@ -66,6 +66,8 @@ if (function_exists('add_theme_support'))
 
 // HTML5 Blank navigation
 
+
+
 function homebg(){
 
     the_post_thumbnail('full', ['class' => 'img-fluid', 'title' => 'Feature image']);
@@ -325,9 +327,13 @@ function enable_threaded_comments()
     }
 }
 
+
 // Custom Comments Callback
 function halcyoncomments($comment, $args, $depth)
 {
+
+
+
 	$GLOBALS['comment'] = $comment;
 	extract($args, EXTR_SKIP);
 
@@ -335,39 +341,56 @@ function halcyoncomments($comment, $args, $depth)
 		$tag = 'div';
 		$add_below = 'comment';
 	} else {
-		$tag = 'li';
+		$tag = 'div';
 		$add_below = 'div-comment';
 	}
 ?>
     <!-- heads up: starting < for the html tag (li or div) in the next line: -->
     <<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
-	<?php if ( 'div' != $args['style'] ) : ?>
+    <div class="media d-block d-md-flex mt-3">
+    <?php if ( 'div' != $args['style'] ) : ?>
 	<div id="div-comment-<?php comment_ID() ?>" class="comment-body">
-	<?php endif; ?>
-	<div class="comment-author vcard">
-	<?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['180'] ); ?>
-	<?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
-	</div>
-<?php if ($comment->comment_approved == '0') : ?>
+    <?php endif; ?>
+    
+        
+                    <img class="d-flex mb-3 mx-auto " src="<?php echo get_avatar_url($comment, $size);  ?>" alt="Generic placeholder image">
+                    
+                    <div class="media-body text-center text-md-left ml-md-3 ml-0">
+                        <h5 class="mt-0 font-weight-bold"><?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
+                            <a href="" class="pull-right">
+                                <i class="fa fa-reply"></i>
+                            </a>
+                        </h5>
+                        <?php comment_text() ?>
+
+                        <?php if ($comment->comment_approved == '0') : ?>
 	<em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
 	<br />
 <?php endif; ?>
+                    </div>
+                </div>
 
-	<div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
-		<?php
-			printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'  ','' );
-		?>
+
+    
+
+
 	</div>
 
-	<?php comment_text() ?>
+
+
+
+	
 
 	<div class="reply">
 	<?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
 	</div>
 	<?php if ( 'div' != $args['style'] ) : ?>
 	</div>
-	<?php endif; ?>
-<?php }
+    <?php endif; ?>
+    
+<?php 
+
+}
 
 /*------------------------------------*\
 	Actions + Filters + ShortCodes
@@ -430,42 +453,42 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 \*------------------------------------*/
 
 // Create 1 Custom Post type for a Demo, called halcyon-b
-function create_post_type_html5()
-{
-    register_taxonomy_for_object_type('category', 'gallery'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('post_tag', 'mosaicpost');
-    register_post_type('gallery', // Register Custom Post Type
-        array(
-        'labels' => array(
-            'name' => __('Gallery Post', 'halcyon'), // Rename these to suit
-            'singular_name' => __('Gallery Post', 'halcyon'),
-            'add_new' => __('Add New', 'halcyon'),
-            'add_new_item' => __('Add New Gallery Entry', 'halcyon'),
-            'edit' => __('Edit', 'halcyon'),
-            'edit_item' => __('Edit Gallery Post', 'halcyon'),
-            'new_item' => __('New Gallery Post', 'halcyon'),
-            'view' => __('View Gallery Post', 'halcyon'),
-            'view_item' => __('View Gallery Post', 'halcyon'),
-            'search_items' => __('Search Gallery Post', 'halcyon'),
-            'not_found' => __('No Gallery Posts found', 'halcyon'),
-            'not_found_in_trash' => __('No Gallery Posts found in Trash', 'halcyon')
-        ),
-        'public' => true,
-        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
-        'has_archive' => true,
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'thumbnail'
-        ), // Go to Dashboard Custom HTML5 Blank post for supports
-        'can_export' => true, // Allows export in Tools > Export
-        'taxonomies' => array(
-            'post_tag',
-            'category'
-        ) // Add Category and Post Tags support
-    ));
-}
+// function create_post_type_html5()
+// {
+//     register_taxonomy_for_object_type('category', 'gallery'); // Register Taxonomies for Category
+//     register_taxonomy_for_object_type('post_tag', 'mosaicpost');
+//     register_post_type('gallery', // Register Custom Post Type
+//         array(
+//         'labels' => array(
+//             'name' => __('Gallery Post', 'halcyon'), // Rename these to suit
+//             'singular_name' => __('Gallery Post', 'halcyon'),
+//             'add_new' => __('Add New', 'halcyon'),
+//             'add_new_item' => __('Add New Gallery Entry', 'halcyon'),
+//             'edit' => __('Edit', 'halcyon'),
+//             'edit_item' => __('Edit Gallery Post', 'halcyon'),
+//             'new_item' => __('New Gallery Post', 'halcyon'),
+//             'view' => __('View Gallery Post', 'halcyon'),
+//             'view_item' => __('View Gallery Post', 'halcyon'),
+//             'search_items' => __('Search Gallery Post', 'halcyon'),
+//             'not_found' => __('No Gallery Posts found', 'halcyon'),
+//             'not_found_in_trash' => __('No Gallery Posts found in Trash', 'halcyon')
+//         ),
+//         'public' => true,
+//         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+//         'has_archive' => true,
+//         'supports' => array(
+//             'title',
+//             'editor',
+//             'excerpt',
+//             'thumbnail'
+//         ), // Go to Dashboard Custom HTML5 Blank post for supports
+//         'can_export' => true, // Allows export in Tools > Export
+//         'taxonomies' => array(
+//             'post_tag',
+//             'category'
+//         ) // Add Category and Post Tags support
+//     ));
+// }
 
 /*------------------------------------*\
 	ShortCode Functions
