@@ -6,22 +6,20 @@
  */
 
 /*------------------------------------*\
-	External Modules/Files
+    External Modules/Files
 \*------------------------------------*/
 
 // Load any external files you have here
 
 /*------------------------------------*\
-	Theme Support
+    Theme Support
 \*------------------------------------*/
 
-if (!isset($content_width))
-{
+if (!isset($content_width)) {
     $content_width = 900;
 }
 
-if (function_exists('add_theme_support'))
-{
+if (function_exists('add_theme_support')) {
     // Add Menu Support
     add_theme_support('menus');
 
@@ -36,21 +34,21 @@ if (function_exists('add_theme_support'))
     
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
     /*add_theme_support('custom-background', array(
-	'default-color' => 'FFF',
-	'default-image' => get_template_directory_uri() . '/img/bg.jpg'
+    'default-color' => 'FFF',
+    'default-image' => get_template_directory_uri() . '/img/bg.jpg'
     ));*/
 
     // Add Support for Custom Header - Uncomment below if you're going to use
     /*add_theme_support('custom-header', array(
-	'default-image'			=> get_template_directory_uri() . '/img/headers/default.jpg',
-	'header-text'			=> false,
-	'default-text-color'		=> '000',
-	'width'				=> 1000,
-	'height'			=> 198,
-	'random-default'		=> false,
-	'wp-head-callback'		=> $wphead_cb,
-	'admin-head-callback'		=> $adminhead_cb,
-	'admin-preview-callback'	=> $adminpreview_cb
+    'default-image'            => get_template_directory_uri() . '/img/headers/default.jpg',
+    'header-text'            => false,
+    'default-text-color'        => '000',
+    'width'                => 1000,
+    'height'            => 198,
+    'random-default'        => false,
+    'wp-head-callback'        => $wphead_cb,
+    'admin-head-callback'        => $adminhead_cb,
+    'admin-preview-callback'    => $adminpreview_cb
     ));*/
 
     // Enables post and comment RSS feed links to head
@@ -61,14 +59,15 @@ if (function_exists('add_theme_support'))
 }
 
 /*------------------------------------*\
-	Functions
+    Functions
 \*------------------------------------*/
 
 // HTML5 Blank navigation
 
 
 
-function homebg(){
+function homebg()
+{
 
     the_post_thumbnail('full', ['class' => 'img-fluid', 'title' => 'Feature image']);
 }
@@ -78,16 +77,18 @@ require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
 
 function halcyon_nav()
 {
-	wp_nav_menu( array(
-        'theme_location'	=> 'header-menu',
-        'depth'				=> 0, // 1 = with dropdowns, 0 = no dropdowns.
-        'container'			=> 'nav',
-        'container_class'	=> 'collapse navbar-collapse',
-        'container_id'		=> 'bs-example-navbar-collapse-1',
-        'menu_class'		=> 'navbar-nav mr-auto text-center',
-        'fallback_cb'		=> 'WP_Bootstrap_Navwalker::fallback',
-        'walker'			=> new WP_Bootstrap_Navwalker()
-    ) );
+    wp_nav_menu(
+        array(
+        'theme_location'    => 'header-menu',
+        'depth'                => 0, // 1 = with dropdowns, 0 = no dropdowns.
+        'container'            => 'nav',
+        'container_class'    => 'collapse navbar-collapse',
+        'container_id'        => 'NavContent',
+        'menu_class'        => 'navbar-nav mr-auto text-center',
+        'fallback_cb'        => 'WP_Bootstrap_Navwalker::fallback',
+        'walker'            => new WP_Bootstrap_Navwalker()
+        ) 
+    );
 }
 
 // Load HTML5 Blank scripts (header.php)
@@ -98,7 +99,7 @@ function halcyon_header_scripts()
         wp_register_script('jquery3',  'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js', array(), '3.3.1'); // Jquery
         wp_enqueue_script('jquery3'); // Enqueue it!
 
-    	wp_register_script('conditionizr', get_template_directory_uri() . '/js/lib/conditionizr-4.3.0.min.js', array(), '4.3.0'); // Conditionizr
+        wp_register_script('conditionizr', get_template_directory_uri() . '/js/lib/conditionizr-4.3.0.min.js', array(), '4.3.0'); // Conditionizr
         wp_enqueue_script('conditionizr'); // Enqueue it!
 
         wp_register_script('modernizr', get_template_directory_uri() . '/js/lib/modernizr-2.7.1.min.js', array(), '2.7.1'); // Modernizr
@@ -116,8 +117,8 @@ function halcyon_header_scripts()
         wp_register_script('oscripts', get_template_directory_uri() . '/js/scripts.js', array(), '0.0.1'); // Quickedits
         wp_enqueue_script('oscripts'); // Enqueue it!
 
-        wp_register_script('wow',  'https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js', array(), '1.1.2'); // wow such doge
-        wp_enqueue_script('wow'); // Enqueue it!
+        wp_register_script('wow2',  'https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js', array(), '1.1.2', 'True'); // wow such doge
+        wp_enqueue_script('wow2'); // Enqueue it!
     }
 }
 
@@ -161,11 +162,13 @@ function halcyon_styles()
 // Register HTML5 Blank Navigation
 function register_html5_menu()
 {
-    register_nav_menus(array( // Using array to specify more menus if needed
+    register_nav_menus(
+        array( // Using array to specify more menus if needed
         'header-menu' => __('Header Menu', 'halcyon'), // Main Navigation
         'sidebar-menu' => __('Sidebar Menu', 'halcyon'), // Sidebar Navigation
         'extra-menu' => __('Extra Menu', 'halcyon') // Extra Navigation if needed (duplicate as many as you need!)
-    ));
+        )
+    );
 }
 
 // Remove the <div> surrounding the dynamic navigation to cleanup markup
@@ -206,10 +209,10 @@ function add_slug_to_body_class($classes)
 }
 
 // If Dynamic Sidebar Exists
-if (function_exists('register_sidebar'))
-{
+if (function_exists('register_sidebar')) {
     // Define Sidebar Widget Area 1
-    register_sidebar(array(
+    register_sidebar(
+        array(
         'name' => __('Widget Area 1', 'halcyon'),
         'description' => __('Description for this widget-area...', 'halcyon'),
         'id' => 'widget-area-1',
@@ -217,10 +220,12 @@ if (function_exists('register_sidebar'))
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
-    ));
+        )
+    );
 
     // Define Sidebar Widget Area 2
-    register_sidebar(array(
+    register_sidebar(
+        array(
         'name' => __('Widget Area 2', 'halcyon'),
         'description' => __('Description for this widget-area...', 'halcyon'),
         'id' => 'widget-area-2',
@@ -228,17 +233,20 @@ if (function_exists('register_sidebar'))
         'after_widget' => '</div>',
         'before_title' => '<h3>',
         'after_title' => '</h3>'
-    ));
+        )
+    );
 }
 
 // Remove wp_head() injected Recent Comment styles
 function my_remove_recent_comments_style()
 {
     global $wp_widget_factory;
-    remove_action('wp_head', array(
+    remove_action(
+        'wp_head', array(
         $wp_widget_factory->widgets['WP_Widget_Recent_Comments'],
         'recent_comments_style'
-    ));
+        )
+    );
 }
 
 // Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
@@ -246,12 +254,14 @@ function html5wp_pagination()
 {
     global $wp_query;
     $big = 999999999;
-    echo paginate_links(array(
+    echo paginate_links(
+        array(
         'base' => str_replace($big, '%#%', get_pagenum_link($big)),
         'format' => '?paged=%#%',
         'current' => max(1, get_query_var('paged')),
         'total' => $wp_query->max_num_pages
-    ));
+        )
+    );
 }
 
 // Custom Excerpts
@@ -310,7 +320,7 @@ function remove_thumbnail_dimensions( $html )
 }
 
 // Custom Gravatar in Settings > Discussion
-function halcyongravatar ($avatar_defaults)
+function halcyongravatar($avatar_defaults)
 {
     $myavatar = get_template_directory_uri() . '/img/gravatar.jpg';
     $avatar_defaults[$myavatar] = "Custom Gravatar";
@@ -334,22 +344,23 @@ function halcyoncomments($comment, $args, $depth)
 
 
 
-	$GLOBALS['comment'] = $comment;
-	extract($args, EXTR_SKIP);
+    $GLOBALS['comment'] = $comment;
+    extract($args, EXTR_SKIP);
 
-	if ( 'div' == $args['style'] ) {
-		$tag = 'div';
-		$add_below = 'comment';
-	} else {
-		$tag = 'div';
-		$add_below = 'div-comment';
-	}
+    if ('div' == $args['style'] ) {
+        $tag = 'div';
+        $add_below = 'comment';
+    } else {
+        $tag = 'div';
+        $add_below = 'div-comment';
+    }
 ?>
-    <!-- heads up: starting < for the html tag (li or div) in the next line: -->
-    <<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
+
+   
+    <<?php echo $tag ?> <?php comment_class(empty($args['has_children']) ? '' : 'parent') ?> id="comment-<?php comment_ID() ?>">
     <div class="media d-block d-md-flex mt-3">
-    <?php if ( 'div' != $args['style'] ) : ?>
-	<div id="div-comment-<?php comment_ID() ?>" class="comment-body">
+    <?php if ('div' != $args['style'] ) : ?>
+    <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
     <?php endif; ?>
     
         
@@ -364,9 +375,9 @@ function halcyoncomments($comment, $args, $depth)
                         <?php comment_text() ?>
 
                         <?php if ($comment->comment_approved == '0') : ?>
-	<em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
-	<br />
-<?php endif; ?>
+    <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
+    <br />
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -374,18 +385,18 @@ function halcyoncomments($comment, $args, $depth)
     
 
 
-	</div>
+    </div>
 
 
 
 
-	
+    
 
-	<div class="reply">
-	<?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-	</div>
-	<?php if ( 'div' != $args['style'] ) : ?>
-	</div>
+    <div class="reply">
+    <?php comment_reply_link(array_merge($args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+    </div>
+    <?php if ('div' != $args['style'] ) : ?>
+    </div>
     <?php endif; ?>
     
 <?php 
@@ -393,7 +404,7 @@ function halcyoncomments($comment, $args, $depth)
 }
 
 /*------------------------------------*\
-	Actions + Filters + ShortCodes
+    Actions + Filters + ShortCodes
 \*------------------------------------*/
 
 // Add Actions
@@ -449,7 +460,7 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 // [html5_shortcode_demo] [html5_shortcode_demo_2] Here's the page title! [/html5_shortcode_demo_2] [/html5_shortcode_demo]
 
 /*------------------------------------*\
-	Custom Post Types
+    Custom Post Types
 \*------------------------------------*/
 
 // Create 1 Custom Post type for a Demo, called halcyon-b
@@ -491,7 +502,7 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 // }
 
 /*------------------------------------*\
-	ShortCode Functions
+    ShortCode Functions
 \*------------------------------------*/
 
 // Shortcode Demo with Nested Capability
@@ -508,24 +519,24 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
 
 ?>
 
-    <!--  -->
-	<!-- Find first image or Feature image -->
-    <!--  -->
+
 
 
 <?php
  
  /*Find the image id from a URL*/
  
-function url_get_image_id($image_url) {
+function url_get_image_id($image_url) 
+{
     global $wpdb;
-    $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
+    $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url));
     return $attachment[0];
 }
  
 /* determine whether post has a featured image, if not, find the first image inside the post content, $size passes the thumbnail size, $url determines whether to return a URL or a full image tag*/
  
-function checkImageType($size, $type) {
+function checkImageType($size, $type) 
+{
  
     global $post;
     $content = $post->post_content;                

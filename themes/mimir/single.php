@@ -12,31 +12,31 @@ if (has_post_thumbnail() ) {
 ?>
 
 		<!--Section: Post-->
-		<section class="mt-4" style="
+		<section class="" style="
     overflow-x:  hidden;" >
 
 			<!--Grid row-->
 			<div class="row">
 
 				<!--Featured Image-->
-				<div class="card mb-4 mx-auto wow fadeIn">
+				<div class="card mb-4 mx-auto wow fadeIn" style=" z-index:1">
 
 
 
-					<img src="<?php checkImageType('full', 'url');  ?>" class="img-fluid img-responsive" alt="Responsive image">
+					<img src="<?php checkImageType('full', 'url');  ?>" class="img-fluid img-responsive z-depth-1" alt="Responsive image">
 
 				</div>
 
 				<!--/.Featured Image-->
 
 				<!--Grid column-->
-				<div class="col-md-8 mb-4 mx-auto">
+				<div class="col-md-8 mb-4 mx-auto" style=" z-index:2">
 
 
 					
 
 					<!--Card-->
-					<div class="card mb-4 wow fadeIn">
+					<div class="mb-4 wow fadeIn">
 
 
 

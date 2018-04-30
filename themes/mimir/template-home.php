@@ -45,32 +45,10 @@ if (has_post_thumbnail() ) {
     </section>
     <!-- /section -->
 
-    <!-- footer -->
-    <div class="mx-auto w-50 text-center fixed-bottom">
 
-        <!-- copyright -->
-        <p>
-            &copy;
-    <?php echo date('Y'); ?> Copyright
-    <?php bloginfo('name'); ?>.
-            </br>
-    <?php _e('Powered by', 'halcyon'); ?>
-            <a href="//wordpress.org" title="WordPress">WordPress</a>
-            <!-- <a href="//html5blank.com" title="HTML5 Blank">HTML5 Blank</a>. -->
-        </p>
-        <!-- /copyright -->
-
-    </div>
-    <!-- /footer -->
 
 </main>
 
 
 
-</div>
-
-
-
-</body>
-
-</html>
+        <?php get_footer(); ?>

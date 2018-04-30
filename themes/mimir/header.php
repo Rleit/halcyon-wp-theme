@@ -19,7 +19,7 @@
 	<meta name="description" content="<?php bloginfo('description'); ?>">
 
 	<?php wp_head(); ?>
-	
+
 	<script>
 		// conditionizr.com
 		// configure environment tests
@@ -50,11 +50,20 @@
 			</div>
 			<!-- /logo -->
 
-			    <!-- Collapse button -->
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation"><div class="animated-icon3"><span></span><span></span><span></span><span></span></div></button>
+			<!-- Collapse button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavContent" aria-controls="NavContent"
+			    aria-expanded="false" aria-label="Toggle navigation">
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<div class="animated-icon3">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+
+			</button>
+
+			<div class="collapse navbar-collapse" id="NavContent">
 
 				<?php halcyon_nav(); ?>
 
@@ -74,6 +83,3 @@
 
 	<!-- wrapper -->
 	<div class="container-fluid nopad">
-		
-
-			

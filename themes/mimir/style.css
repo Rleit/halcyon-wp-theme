@@ -37,6 +37,7 @@ body {
 	font: 300 15px/1.4 'Rajdhani', Arial, sans-serif;
 	color: #444;
 	background-color: #F7F7F6;
+	height: 100%;
 }
 
 /* clear */
@@ -128,39 +129,43 @@ input:focus {
 
 /* footer */
 
-.footer {}
-
-.nopad {
-
-	padding: 0 !important;
-
-}
-
-.hbg {
-
-	height: 100vh;
-
-	min-height: 30rem;
-    position: relative;
-    display: table;
-    width: 100%;
-    
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-
-    background-position: center center;
-    background-repeat: no-repeat;
-	background-size: cover;
-	
+.footer {
 	color:#fff;
 
 
+}
 
+
+.footer a {
+	color:#c41b1b;
+
+}
+
+.footer a:hover {
+	color:#8d1d1d;
+
+}
+.nopad {
+	padding: 0 !important;
+}
+
+.hbg {
+	height: 100vh;
+	min-height: 30rem;
+	position: relative;
+	display: table;
+	width: 100%;
+	padding-top: 8rem;
+	padding-bottom: 8rem;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #fff;
 	/* The image used */
 	/* background-image: url("img_girl.jpg"); */
 	/* Full height */
 	/* height: 100%; */
-/*  */
+	/*  */
 	/* min-height: 100vh; */
 	/* Center and scale the image nicely */
 	/* background-position: center; */
@@ -168,40 +173,46 @@ input:focus {
 	/* background-size: cover; */
 }
 
-
 .hbg a {
-
-	color: #e3f2fd;	
+	color: #f2f2f2;
 }
 
-.hbg h1{
-
-	font-size: 	2.5em;
-
-
+.hbg h1 {
+	font-size: 2.5em;
 }
 
-.hbg h2{
-
-	font-size: 	1.5em;
-
-
+.hbg h2 {
+	font-size: 1.5em;
 }
 
-.hbg h3{
-
-	font-size: 	1.2em;
-
-
+.hbg h3 {
+	font-size: 1.2em;
 }
 
-
-.hbg .blockquote-footer{
-
-	font-size: 		0.85em;
+.hbg .blockquote-footer {
+	font-size: 0.85em;
 	color: #fff;
+}
+
+.ab-us {
+
+	
+	display: block;
+	width: 100%;
+	min-height: 100%;
+}
+
+.ab-us-feature {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+
+	height:100vh;
+	
 
 
+	
 }
 
 /*------------------------------------*\
@@ -253,19 +264,19 @@ only screen and (min-resolution:144dpi) {}
 
 ::selection {
 	background: #04A4CC;
-	color: #FFF;
+	color: #131313;
 	text-shadow: none;
 }
 
 ::-webkit-selection {
 	background: #04A4CC;
-	color: #FFF;
+	color: #131313;
 	text-shadow: none;
 }
 
 ::-moz-selection {
 	background: #04A4CC;
-	color: #FFF;
+	color: #131313;
 	text-shadow: none;
 }
 
@@ -354,8 +365,6 @@ a img.aligncenter {
 
 .bypostauthor {}
 
-
-
 /*------------------------------------*\
     PRINT
 \*------------------------------------*/
@@ -411,32 +420,25 @@ a img.aligncenter {
 		page-break-after: avoid;
 	}
 }
+
 /*------------------------------------*\
     Post Grid plugin override
 \*------------------------------------*/
-
-
-
 
 /*------------------------------------*\
     Bootstrap overrides
 \*------------------------------------*/
 
 .img-responsive {
-
 	/* width: 100%;  */
 	display: block;
-	height: 95rem;
-
+	height: auto;
+	width: 100vw;
 }
 
-
-
 .p-content img {
-
-	max-width: 100%; 
+	max-width: 100%;
 	height: 450px;
-
 }
 
 .gradient-custom {
@@ -448,24 +450,25 @@ a img.aligncenter {
 	background: -webkit-linear-gradient(left, #3a6073, #3a7bd5);
 	background: -o-linear-gradient(left, #3a6073, #3a7bd5);
 	background: linear-gradient(to right, #3a6073, #3a7bd5);
-	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
-  
-  .card-comments img {
-	width: 7rem; }
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
+.card-comments img {
+	width: 7rem;
+}
 
 .full-width-row {
 	overflow-x: hidden;
 }
 
 .full-width-row>div {
-	margin-left:0;
-	margin-right:0;
-
+	margin-left: 0;
+	margin-right: 0;
 }
+
 .full-width-row>div>main {
-padding-left: -15px !important;
-padding-right: -15px !important;
+	padding-left: -15px !important;
+	padding-right: -15px !important;
 }
 
 /* Icon 1 */
@@ -643,5 +646,3 @@ padding-right: -15px !important;
 	top: 21px;
 	left: 8px;
 }
-
-
