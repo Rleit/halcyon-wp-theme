@@ -117,7 +117,7 @@ function halcyon_header_scripts()
         wp_register_script('oscripts', get_template_directory_uri() . '/js/scripts.js', array(), '0.0.1'); // Quickedits
         wp_enqueue_script('oscripts'); // Enqueue it!
 
-        wp_register_script('wow2',  'https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js', array(), '1.1.2', 'True'); // wow such doge
+        wp_register_script('wow2',  'https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js', array(), '1.1.2'); // wow such doge
         wp_enqueue_script('wow2'); // Enqueue it!
     }
 }
@@ -364,7 +364,7 @@ function halcyoncomments($comment, $args, $depth)
     <?php endif; ?>
     
         
-                    <img class="d-flex mb-3 mx-auto " src="<?php echo get_avatar_url($comment, $size);  ?>" alt="Generic placeholder image">
+                    <img class="d-flex mb-3 mr-auto " src="<?php echo get_avatar_url($comment, $size);  ?>" alt="Generic placeholder image">
                     
                     <div class="media-body text-center text-md-left ml-md-3 ml-0">
                         <h5 class="mt-0 font-weight-bold"><?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>

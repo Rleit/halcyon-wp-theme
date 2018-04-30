@@ -7,15 +7,15 @@ if (has_post_thumbnail() ) {
 }
 ?>
 
-<main role="main" class="ab-us ">
+<main role="main" class="ab-us wow fadeIn ">
 
     <section>
 
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-        <div class="container-fluid">
+        <div class="container-fluid ">
             <div class="row full-width-row">
-                <div class="col-md-5" style="margin-top:7.5rem;">
+                <div class="col-md-5 wow fadeIn" style="margin-top:7.5rem;">
 
                     <div class="  " id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
 
@@ -25,7 +25,7 @@ if (has_post_thumbnail() ) {
 
                 </div>
 
-                <div class="col-md-7 ab-us-feature z-depth-1 " style="background-image:url('<?php echo $large_image_url[0]; ?>'); ">
+                <div class="col-md-7 ab-us-feature z-depth-1 wow fadeIn " style="background-image:url('<?php echo $large_image_url[0]; ?>'); ">
 
                     <!-- <img class="img-fluid img-responsive" src=""> </img> -->
                 </div>

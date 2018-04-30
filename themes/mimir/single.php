@@ -13,18 +13,22 @@ if (has_post_thumbnail() ) {
 
 		<!--Section: Post-->
 		<section class="" style="
-    overflow-x:  hidden;" >
+    overflow-x:  hidden;">
 
 			<!--Grid row-->
-			<div class="row">
+			<div class="row ">
 
 				<!--Featured Image-->
-				<div class="card mb-4 mx-auto wow fadeIn" style=" z-index:1">
+				<div class="card mb-4 mx-auto wow fadeInDown view" style=" z-index:1">
 
 
 
 					<img src="<?php checkImageType('full', 'url');  ?>" class="img-fluid img-responsive z-depth-1" alt="Responsive image">
 
+
+					<div class="mask flex-center rgba-stylish-strong wow fadeInDown">
+						<h1 class="white-text font-weight-bold" style="font-size:4.5rem;"><?php the_title(); ?></h1>
+					</div>
 				</div>
 
 				<!--/.Featured Image-->
@@ -33,7 +37,7 @@ if (has_post_thumbnail() ) {
 				<div class="col-md-8 mb-4 mx-auto" style=" z-index:2">
 
 
-					
+
 
 					<!--Card-->
 					<div class="mb-4 wow fadeIn">
