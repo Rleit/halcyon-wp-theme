@@ -20,39 +20,39 @@
 
 <?php endif; ?>
 
-<?php comment_form(); ?>
+<?php 
+$comments_args = array(
+    // change the title of send button 
+    'label_submit'=>'Send',
+    // remove "Text or HTML to be displayed after the set of comment fields"
+    'comment_notes_after' => '',
+    'class_submit' => 'btn btn-outline-success btn-md',
+    // redefine your own textarea (the comment body)
+    'comment_field' => '
+    
+                    <div class="form-group">
+                        <label for="comment">' . _x( 'Comment', 'noun' ) . '</label>
+                        <textarea class="form-control" id="comment" name="comment" aria-required="true" rows="5"></textarea>
+                    </div>',
+);
+?>
+
+<!--Reply-->
+<div class="card mb-3 wow fadeIn">
+    <div class="card-header font-weight-bold">Leave a reply</div>
+    <div class="card-body">
+
+     
+    
+    <?php comment_form($comments_args); ?>
         <!--/.Comments-->
 
-        <!--Reply-->
-        <div class="card mb-3 wow fadeIn">
-            <div class="card-header font-weight-bold">Leave a reply</div>
-            <div class="card-body">
+       
 
-                <!-- Default form reply -->
-                <form>
+               
 
-                    <!-- Comment -->
-                    <div class="form-group">
-                        <label for="replyFormComment">Your comment</label>
-                        <textarea class="form-control" id="replyFormComment" rows="5"></textarea>
-                    </div>
+                    
 
-                    <!-- Name -->
-                    <label for="replyFormName">Your name</label>
-                    <input type="email" id="replyFormName" class="form-control">
-
-                    <br>
-
-                    <!-- Email -->
-                    <label for="replyFormEmail">Your e-mail</label>
-                    <input type="email" id="replyFormEmail" class="form-control">
-
-
-                    <div class="text-center mt-4">
-                        <button class="btn btn-info btn-md" type="submit">Post</button>
-                    </div>
-                </form>
-                <!-- Default form reply -->
 
 
 
