@@ -27,8 +27,14 @@ if (has_post_thumbnail() ) {
 
 
 					<div class="mask flex-center rgba-stylish-strong wow fadeInDown">
-						<h1 class="white-text font-weight-bold" style="font-size:4.5rem;"><?php the_title(); ?></h1>
+						<h1 class="white-text font-weight-bold" style="font-size:4.5rem;">
+							<?php the_title(); ?>
+							</br>
+							<hr class="white z-depth-1" style="margin-bottom:5px !important; margin-top:5px !important; " />
+						</h1>
+
 					</div>
+
 				</div>
 
 				<!--/.Featured Image-->
